@@ -1,0 +1,75 @@
+from tkinter import *
+
+def login():
+    # Get the entered values of username and password
+    username = e1.get()
+    password = e2.get()
+
+    # Check if the values match the predefined values
+    if username == "admin" and password == "password":
+        # Clear the entry fields
+        e1.delete(0, END)
+        e2.delete(0, END)
+
+        # Display a message indicating successful login
+        Label(frame, text="Login successful!", fg="green").grid(row=3, column=1)
+
+        # TODO: Open the main page
+        def handle_button_click(button_text):
+            # Check which button was clicked
+            if button_text == 'Add Item':
+                # TODO: Implement functionality for adding a new item
+                print('Add Item clicked')
+            elif button_text == 'Find Item':
+                # TODO: Implement functionality for finding an item
+                print('Find Item clicked')
+            elif button_text == 'Update Item':
+                # TODO: Implement functionality for updating an item
+                print('Update Item clicked')
+            elif button_text == 'Delete Item':
+                # TODO: Implement functionality for deleting an item
+                print('Delete Item clicked')
+            elif button_text == 'Search Items':
+                # TODO: Implement functionality for searching items
+                print('Search Items clicked')
+            else:
+                print('Unknown button clicked')
+
+        # Define function to create a button with the specified text and command
+        def create_button(text, command):
+            button = Button(root, text=text, width=20, command=command)
+            button.pack(pady=10)
+
+        # Create buttons for each option
+        create_button('Add Item', lambda: handle_button_click('Add Item'))
+        create_button('Find Item', lambda: handle_button_click('Find Item'))
+        create_button('Update Item', lambda: handle_button_click('Update Item'))
+        create_button('Delete Item', lambda: handle_button_click('Delete Item'))
+        create_button('Search Items', lambda: handle_button_click('Search Items'))
+
+
+    else:
+        # Display an error message indicating invalid credentials
+        Label(frame, text="Invalid username or password", fg="red").grid(row=3, column=1)
+
+root = Tk()
+root.configure(background='#2c3e50')
+
+frame = Frame(root)
+frame.configure(background='#2c3e50')
+frame.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+Label(frame, text='USERNAME').grid(row=0, column=0, sticky='w')
+Label(frame, text='PASSWORD').grid(row=1, column=0, sticky='w')
+
+e1 = Entry(frame)
+e2 = Entry(frame, show='*')
+
+e1.grid(row=0, column=1)
+e2.grid(row=1, column=1)
+
+# Create a button for login
+Button(frame, text="LOGIN", command=login).grid(row=2, column=1)
+
+root.mainloop()
+
